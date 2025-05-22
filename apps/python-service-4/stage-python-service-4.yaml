@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: python-service-4
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/los-demos/python-service-4.git
+    targetRevision: main
+    path: charts/python-service-4
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: python-service-4
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
